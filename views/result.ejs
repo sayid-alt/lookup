@@ -1,0 +1,127 @@
+<%- include('./partial/header.ejs') %>
+	<div class="bg-indigo-100 w-full h-[100vh] pt-[200px] ">
+		<div class="container-meetup shadow-xl rounded-3xl p-20 bg-slate-100 w-[800px]">
+			<% if (locals.data) { %>
+				<h1 class="font-bold text-3xl mx-auto text-center ">NICE TO <span class="text-primary-partner">MEET
+						YA!</span></h1>
+				<div class="flex gap-10 items-center justify-center">
+					<div class="bg-white rounded-full p-5">
+						<img src="<%=data.picture.large%>" alt="picture" class="w-[240px] h-auto rounded-full shadow-xl">
+					</div>
+
+					<!-- Profile data -->
+					<div class="w-[500px] ">
+						<h3 class="text-2xl font-bold">
+							<%= data.name.title %>.
+								<%= data.name.first %>
+									<%= data.name.last %>
+						</h3>
+						<p class="mt-5 max-w-[200px]">
+							<%=`${data.location.street.number} ${data.location.street.name}, ${data.location.city},
+								${data.location.state} ${data.location.country}, ${data.location.postcode} `%>
+						</p>
+					</div>
+				</div>
+				<div class="grid grid-cols-3 p-10 mt-10 shadow-md bg-white rounded-full">
+
+					<!-- col-1 -->
+					<div class="flex justify-center items-center">
+						<button data-popover-target="popover-email-profile" type="button"
+							class="flex flex-col items-center cursor-pointer relative hover:scale-110 duration-300 ease-in-out hover:text-primary">
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+								<path fill="currentColor" fill-opacity="0" d="M12 11L4 6H20L12 11Z">
+									<animate fill="freeze" attributeName="fill-opacity" begin="1s" dur="0.15s" values="0;0.3" />
+								</path>
+								<g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2">
+									<rect width="18" height="14" x="3" y="5" stroke-dasharray="64" stroke-dashoffset="64" rx="1">
+										<animate fill="freeze" attributeName="stroke-dashoffset" dur="0.6s" values="64;0" />
+									</rect>
+									<path stroke-dasharray="24" stroke-dashoffset="24" d="M3 6.5L12 12L21 6.5">
+										<animate fill="freeze" attributeName="stroke-dashoffset" begin="0.6s" dur="0.4s"
+											values="24;0" />
+									</path>
+								</g>
+							</svg>
+							<span>Email</span>
+						</button>
+						<div data-popover id="popover-email-profile" role="tooltip"
+							class="absolute z-10 invisible inline-block w-64 text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
+							<div
+								class="px-3 py-2 bg-gray-100 border-b border-gray-200 rounded-t-lg dark:border-gray-600 dark:bg-gray-700">
+								<h3 class="font-semibold text-gray-900 dark:text-white">Email me!
+								</h3>
+							</div>
+							<div class="px-3 py-2">
+								<p>
+									<%=data.email %>
+								</p>
+							</div>
+							<div data-popper-arrow></div>
+						</div>
+					</div>
+
+					<!-- col-2 -->
+					<div class="flex justify-center items-center">
+						<button data-popover-target="popover-birthday-profile" type="button"
+							class="flex flex-col items-center cursor-pointer relative hover:scale-110 duration-300 ease-in-out hover:text-primary">
+							<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 256 256">
+								<path fill="currentColor"
+									d="M92 136a8 8 0 1 1 8-8a8 8 0 0 1-8 8Zm72-16a8 8 0 1 0 8 8a8 8 0 0 0-8-8Zm-10.13 44.62a49 49 0 0 1-51.74 0a4 4 0 0 0-4.26 6.76a57 57 0 0 0 60.26 0a4 4 0 1 0-4.26-6.76ZM228 128A100 100 0 1 1 128 28a100.11 100.11 0 0 1 100 100Zm-8 0a92.11 92.11 0 0 0-90.06-92C116.26 54.07 116 71.83 116 72a12 12 0 0 0 24 0a4 4 0 0 1 8 0a20 20 0 0 1-40 0c0-.78.16-17.31 12-35.64A92 92 0 1 0 220 128Z" />
+							</svg>
+							<span>Birthday</span>
+						</button>
+						<div data-popover id="popover-birthday-profile" role="tooltip"
+							class="absolute z-10 invisible inline-block w-64 text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
+							<div
+								class="px-3 py-2 bg-gray-100 border-b border-gray-200 rounded-t-lg dark:border-gray-600 dark:bg-gray-700">
+								<h3 class="font-semibold text-gray-900 dark:text-white">I'm always wondering myself if i was a
+									baby?
+								</h3>
+							</div>
+							<div class="px-3 py-2">
+								<p>My birthday is <% const d=new Date(data.dob.date); %>
+										<span class="font-bold italic">
+											<%=d.getFullYear()%>-<%=d.getMonth() +1 %>-<%=d.getDate() %>
+										</span>
+
+								</p>
+							</div>
+							<div data-popper-arrow></div>
+						</div>
+					</div>
+
+					<!-- col-3 -->
+					<div class="flex justify-center items-center">
+						<button data-popover-target="popover-age-profile" type="button"
+							class="flex flex-col items-center cursor-pointer relative hover:scale-110 duration-300 ease-in-out hover:text-primary">
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+								<path fill="currentColor"
+									d="M12 12.25a3.75 3.75 0 1 1 3.75-3.75A3.75 3.75 0 0 1 12 12.25Zm0-6a2.25 2.25 0 1 0 2.25 2.25A2.25 2.25 0 0 0 12 6.25Zm7 13a.76.76 0 0 1-.75-.75c0-1.95-1.06-3.25-6.25-3.25s-6.25 1.3-6.25 3.25a.75.75 0 0 1-1.5 0c0-4.75 5.43-4.75 7.75-4.75s7.75 0 7.75 4.75a.76.76 0 0 1-.75.75Z" />
+							</svg>
+							<span>Age</span>
+						</button>
+						<div data-popover id="popover-age-profile" role="tooltip"
+							class="absolute z-10 invisible inline-block w-64 text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
+							<div
+								class="px-3 py-2 bg-gray-100 border-b border-gray-200 rounded-t-lg dark:border-gray-600 dark:bg-gray-700">
+								<h3 class="font-semibold text-gray-900 dark:text-white">We're in the same generation, let's go
+									out!
+								</h3>
+							</div>
+							<div class="px-3 py-2">
+								<p>Hello! I am <%=data.dob.age %> years old.
+								</p>
+							</div>
+							<div data-popper-arrow></div>
+						</div>
+					</div>
+				</div>
+				<% } else { %>
+					<h1 class="text-xl font-bold text-center">No need to sad, let's try again!</h1>
+					<form action="/" class="flex justify-center mt-5">
+						<button class="btn btn-primary bg-indigo-500 " type="submit">Try Again</button>
+					</form>
+					<% } %>
+		</div>
+	</div>
+	<%- include('./partial/footer.ejs') %>

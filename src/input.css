@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+	.container-meetup {
+		@apply container mx-auto;
+	}
+
+	.text-primary {
+		@apply text-[#5200FF]
+	
+	}
+	.text-primary-partner {
+		@apply text-orange-400
+	}
+
+	.bg-primary {
+		@apply bg-[#5200FF]
+	}
+
+	.btn {
+		@apply py-3 px-10 flex justify-center items-center rounded-md
+	}
+
+	.btn-primary {
+		@apply bg-[#5200FF] text-white hover:bg-[#3a3cb7] duration-300 ease-in-out
+	}
+	.btn-secondary {
+		@apply border border-[#5200FF] text-primary hover:btn-primary
+	}
+}
